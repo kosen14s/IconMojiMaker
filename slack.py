@@ -19,16 +19,16 @@ def slackDownloadIcons(token, dirname="."):
 
 	import json
 
-	r = requests.post("https://slack.com/api/users.list", data={"token": TOKEN}) # get user list by json
+	r = requests.post("https://slack.com/api/users.list", data={"token": token}) # get user list by json
 	jobj = json.loads(r.text)
 	def user_infos(jobj):
 		return ({"name": u["name"], "image": u["profile"]["image_72"]} for u in jobj["members"])
 	for u in user_infos(jobj):
-		download(u["image"], os.path.join(dirname, u["name"] + ".jpg"))
+		download(u["image"], join(dirname, u["name"]))
 	
 
 def getInputTagValue(body, name):
-	""" Search value of first input tag which has specified name field """"
+	""" Search value of first input tag which has specified name field """
 	return re.search(r'name="{}" value="(.*)"'.format(name), body).group(1)
 
 

@@ -1,5 +1,6 @@
 from slack import *
 from os import mkdir
+import os
 
 mkdir("dir")
 slackDownloadIcons(TOKEN, "dir")
